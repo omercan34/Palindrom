@@ -4,28 +4,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ö.d_Faktoriyel
+namespace Ö.d_Polindrom
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int sonuc = 1;                                  //  sonuc diye bir değişken tanımladık.
-            int sayi;                                      //  sayi diye bir değişken tanımladık.
-            Console.Write("Birinci sayı giriniz:");        // girilen veriyi ekrana yazdırır.
-            sayi = int.Parse(Console.ReadLine());         //  girilen değeri int çevirir sayı değişkene atar.
-
-            if (sayi > 0)                                 // sayının büyük olup olmadığını kontrol eder.
+            string kelime;
+            string cevir;
+            Console.Write("kelime giriniz (q çıkış):");
+            kelime = Console.ReadLine();
+            while (kelime != "q")
             {
-                for (int i = 1; i <= sayi; i++)           // for döngüsü belirli bir başlangıç, adım ve bitiş değeri(şart) ile işlemleri gerçekleştirmek için kullanılan bir döngüdür.
+
+                cevir = ceviri(kelime);
+                if (kelime == cevir)
                 {
-                    sonuc = sonuc * i;                    //  çarpma  komotu yaztık.
-                    Console.Write("çarpım" + i + "*");      // girilen veriyi ekrana yazdırır.
+                    Console.WriteLine("Girdiğiniz kelime palindromdur.");
                 }
-                Console.WriteLine("Sonuc:" + sonuc);     // girilen veriyi ekrana yazdırır.
+                else
+                {
+                    Console.WriteLine("Girdiğiniz kelime palindrom değildir.");
+                }
+                Console.Write("kelime giriniz (q çıkış):");
+                kelime = Console.ReadLine();
+
             }
 
-            Console.ReadKey();
+
+
+
+
+
+        }
+        static string ceviri(string kelime)
+        {
+
+            char[] metindizi = kelime.ToCharArray();                // char tipinde bir array tanımladık girilen kelimeyi harflerine ayırdık
+            Array.Reverse(metindizi);                              // metin dizisini tersten sıraladık
+            string donenmetin = new string(metindizi);            //metin dizisini stringe çevirdik yeni bir değişkene atadık
+            return donenmetin;                                   //atadığımız değişkeni fonksiyonun çıktsı
+
         }
     }
 }
